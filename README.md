@@ -1,1 +1,0 @@
-# 3D-Solar-System-Model
