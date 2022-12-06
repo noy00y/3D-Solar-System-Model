@@ -9,16 +9,16 @@
 using namespace std;
 
 //Sun, Planets and Stars
-Planet sun(5.0, 0, 0, 0, 0, 0);				//Sun
-Planet mer(1.0, 7, 0, 4.74, 02.11, 0);		//Mercury
-Planet ven(1.5, 11, 0, 3.50, 177.0, 0);		//Venus
-Planet ear(2.0, 16, 0, 2.98, 23.44, 0);		//Earth
-Planet mar(1.2, 21, 0, 2.41, 25.00, 0);		//Mars
-Planet jup(3.5, 28, 0, 1.31, 03.13, 0);		//Jupiter
-Planet sat(3.0, 37, 0, 0.97, 26.70, 0);		//Saturn
-Planet ura(2.5, 45.5, 0, 0.68, 97.77, 0);	//Uranus
-Planet nep(2.3, 53.6, 0, 0.54, 28.32, 0);	//Neptune
-Planet plu(0.3, 59, 0, 0.47, 119.6, 0);		//Pluto
+Planet sun(2.5, 0, 0, 0, 0, 0);				//Sun
+Planet mer(0.5, -7, 0, 4.74, 02.11, 0);		//Mercury
+Planet ven(0.75, 11, 0, 3.50, 177.0, 0);		//Venus
+Planet ear(1.0, -16, 0, 2.98, 23.44, 0);		//Earth
+Planet mar(0.6, 21, 0, 2.41, 25.00, 0);		//Mars
+Planet jup(1.5, -28, 0, 1.31, 03.13, 0);		//Jupiter
+Planet sat(1.4, 37, 0, 0.97, 26.70, 0);		//Saturn
+Planet ura(1.25, -45.5, 0, 0.68, 97.77, 0);	//Uranus
+Planet nep(1.1, 53.6, 0, 0.54, 28.32, 0);	//Neptune
+Planet plu(0.15, -59, 0, 0.47, 119.6, 0);		//Pluto
 
 
 int isAnimate = 0;
@@ -104,7 +104,7 @@ void drawScene(void){
 	glLoadIdentity();
 
 	if (changeCamera == 1)gluLookAt(0.0, zoom, 50.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-	if (changeCamera == 0)gluLookAt(0.0, zoom, 0.00001, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	if (changeCamera == 0)gluLookAt(0.0, 0.0, zoom, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 	if (bigOrbitActive == 1) orbitalTrails();
 
