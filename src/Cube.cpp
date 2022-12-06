@@ -115,9 +115,6 @@ void Cube::drawFace(int i)
 		glTexCoord2f(0.0, 1.0); glVertex3fv(&vertex[face[i][3]][0]);
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
-
-
-
 		break;
 	}
 }

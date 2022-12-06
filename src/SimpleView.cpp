@@ -5,12 +5,12 @@
  */
 
 
+
 #include <GL/glew.h>
 #include "pixmap/RGBpixmap.h"
 #include "solar/Solar.hpp"
 #include "curve/Bezier.hpp"
 #include "surface/RBM.hpp"
-#include "GL/glaux.h"
 #include "glsl/Angel.h"
 
 
@@ -47,9 +47,11 @@ Bezier myBezier;       /* Bezier curve object */
 RBM myRBM;             /* rotation curve mesh object */
 GLuint ProgramObject;  /* GLSL program object */
 
-
-
 void init(void) {
+	ProgramObject = InitShader( "shader/vertexshader.txt", "shader/fragmentshader.txt" );
+	glUseProgram(0);  // disable GLSL shader at start
+
+
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	selectObj = myWorld.searchById(1);
 
@@ -72,17 +74,18 @@ void init(void) {
 	pix[5].readBMPFile("texture/draw.bmp");
 	pix[5].setTexture(5);
 
-	/* set texture for Solar system */
+    /* set texture for Solar system */
 	mySolar.sun->textureID = 2;
 	mySolar.earth->textureID = 3;
 	mySolar.moon->textureID = 4;
 
-//	//initialize GLSL
-//	ProgramObject = InitShader( "shader/vertexshader.txt", "shader/fragmentshader.txt" );
-//	glUseProgram(0);  // disable GLSL shader
-
-	// set rotation curve for rotation surface
+//	 set rotation curve for rotation surface
      myRBM.setRotationCurve(&myBezier);
+
+// your code
+//initialize GLSL
+
+
 }
 
 void drawWCSAxes() {
@@ -194,11 +197,11 @@ int main(int argc, char** argv) {
 	glutInitWindowSize(winWidth, winHeight);
 	glutCreateWindow("SimpleView3 (your name) ");
 
-	glewInit(); // this is for GSLS
+	// your code
+	glewInit(); // your code this is for GSLS
 
 	menu();
 	init();
-
 	glutDisplayFunc(display);
 	glutMotionFunc(mouseMotionFcn);
 	glutMouseFunc(mouseActionFcn);

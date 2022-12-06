@@ -18,6 +18,7 @@ public:
 	GLuint textureID;
 	GLUquadric *quad;
 	Sphere(GLdouble);
+	void setTextureID(GLuint id);
 	void draw();
 };
 

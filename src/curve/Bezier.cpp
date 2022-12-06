@@ -12,10 +12,9 @@ void Bezier::reset() {
 	nPts = 26;
 }
 
-/*  Compute binomial coefficients C for given value of n, output in GLint C[] */
+/*  Compute binomial coefficients C[n] for given value of n, output in GLint C[] */
 void Bezier::binomialCoeffs(GLint n, GLint C[]) {
-	// your code
-	// Using O(n) algorithm for C_{n, i), i = 0, 1, ..., n
+	// your code, using O(n) algorithm for C_{n, i), i = 0, 1, ..., n
 }
 
 /*  Compute Bezier point at u, and output in Point *bezPt */
@@ -44,7 +43,7 @@ void Bezier::computeBezCurvePts() {
 
 
 /* call to compute the sequence of points and tangents on Bezier curve for mesh of rotating Bezier curve */
-void Bezier::computeBezPtTan(GLint npts, Point pts[], Vector tangents[]) {
+void Bezier::computeBezPtsTan(GLint npts, Point pts[], Vector tangents[]) {
 	GLfloat u = 0;
 	GLint C[nCtrlPts];
 	binomialCoeffs(nCtrlPts-1, C);

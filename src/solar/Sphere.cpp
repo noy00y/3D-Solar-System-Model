@@ -13,6 +13,11 @@ Sphere::Sphere(GLdouble size) {
 	quad = gluNewQuadric();
 }
 
+
+void Sphere::setTextureID(GLuint id){
+	textureID = id;
+}
+
 void Sphere::draw() {
 	glPushMatrix();
 	ctmMultiply();
@@ -27,7 +32,6 @@ void Sphere::draw() {
 			break;
 
 		case TEXTURE:
-
 			gluQuadricTexture(this->quad, GL_TRUE);
 			gluQuadricOrientation(this->quad, GLU_OUTSIDE);
 			gluQuadricNormals(this->quad, GLU_SMOOTH);

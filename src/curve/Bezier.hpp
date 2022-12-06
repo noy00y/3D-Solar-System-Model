@@ -28,7 +28,9 @@ public:
 	void display();
 	/* will be used be rotation */
 	void computeBezPtTan(GLfloat u, GLint nCtrlPts, Point ctrlPts[], GLint C[], Point *bezPt, Vector *bezTan);
-	void computeBezPtTan(GLint npts, Point pts[], Vector tangents[]);
+	void computeBezPtsTan(GLint npts, Point pts[], Vector tangents[]);
+
+
 };
 
 #endif
