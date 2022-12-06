@@ -4,6 +4,7 @@
 #include <GL/glext.h>
 #include "Image_Handler/Image_Handler.hpp"
 #include "Planet/Planet.hpp"
+#include "Menu/Menu.hpp"
 
 using namespace std;
 
@@ -21,14 +22,11 @@ Planet plu(0.3, 59, 0, 0.47, 119.6, 0);		//Pluto
 
 
 int isAnimate = 0;
-int bigOrbitActive = 1;
-int smallOrbitActive = 1;
-int moonsActive = 1;
+int bigOrbitActive = 0;
 int changeCamera = 0;
 int frameCount = 0;
-int labelsActive = 0;
 int zoom = 50;
-int logoScene = 1;
+int logoScene = 0;
 
 float lightPos[] = { 0.0, 0.0, -75.0, 1.0 }; // Spotlight position.
 static float spotAngle = 40; // Spotlight cone half-angle.
@@ -36,7 +34,6 @@ float spotDirection[] = { 1.0, 0.0, 0.0 }; // Spotlight direction.
 static float spotExponent = 1.0; // Spotlight exponent = attenuation factor.
 
 GLuint createTexture(Image* image) {
-	//http://www.codeincodeblock.com/2012/05/simple-method-for-texture-mapping-on.html
 	GLuint textureId;
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);
@@ -106,9 +103,8 @@ void drawScene(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	if (changeCamera == 0)gluLookAt(0.0, zoom, 50.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-	if (changeCamera == 1)gluLookAt(0.0, 0.0, zoom, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-	if (changeCamera == 2)gluLookAt(0.0, zoom, 0.00001, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	if (changeCamera == 1)gluLookAt(0.0, zoom, 50.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	if (changeCamera == 0)gluLookAt(0.0, zoom, 0.00001, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 	if (bigOrbitActive == 1) orbitalTrails();
 
@@ -394,7 +390,6 @@ void mouseControl(int button, int state, int x, int y)
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 		if (logoScene) logoScene = 0;
 
-	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN) exit(0);
 	glutPostRedisplay();
 }
 
@@ -412,9 +407,6 @@ void keyInput(unsigned char key, int x, int y){
 
 	case 'O': if (bigOrbitActive) bigOrbitActive = 0; else bigOrbitActive = 1; glutPostRedisplay(); break;
 
-	case '1': changeCamera = 0; glutPostRedisplay(); break;
-	case '2': changeCamera = 1; glutPostRedisplay(); break;
-	case '3': changeCamera = 2; glutPostRedisplay(); break;
 	}
 }
 
@@ -446,6 +438,8 @@ int main(int argc, char **argv){
 	glewExperimental = GL_TRUE;
 	glewInit();
 
+	menu();
 	setup();
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
 	glutMainLoop();
 }
