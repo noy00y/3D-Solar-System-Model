@@ -2,11 +2,10 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <GL/glext.h>
-#include "imageloader.h"
-#include "Planet.hpp"
+#include "Image_Handler/Image_Handler.hpp"
+#include "Planet/Planet.hpp"
 
 using namespace std;
-
 
 //Sun, Planets and Stars
 Planet sun(5.0, 0, 0, 0, 0, 0);				//Sun
@@ -36,12 +35,12 @@ static float spotAngle = 40; // Spotlight cone half-angle.
 float spotDirection[] = { 1.0, 0.0, 0.0 }; // Spotlight direction.
 static float spotExponent = 1.0; // Spotlight exponent = attenuation factor.
 
-GLuint loadTexture(Image* image) {
+GLuint createTexture(Image* image) {
 	//http://www.codeincodeblock.com/2012/05/simple-method-for-texture-mapping-on.html
 	GLuint textureId;
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->width, image->height, 0, GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->sizeX, image->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, image->data);
 	return textureId;
 }
 
@@ -55,17 +54,17 @@ void setup(void){
 	//TEXUTRING SETUP
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
-	Image* sta = loadBMP("textures/stars.bmp");		staTexture = loadTexture(sta);		delete sta;
-	Image* sun = loadBMP("textures/sun.bmp");		sunTexture = loadTexture(sun);		delete sun;
-	Image* mer = loadBMP("textures/mercury.bmp");	merTexture = loadTexture(mer);		delete mer;
-	Image* ven = loadBMP("textures/venus.bmp");		venTexture = loadTexture(ven);		delete ven;
-	Image* ear = loadBMP("textures/earth.bmp");		earTexture = loadTexture(ear);		delete ear;
-	Image* mar = loadBMP("textures/mars.bmp");		marTexture = loadTexture(mar);		delete mar;
-	Image* jup = loadBMP("textures/jupiter.bmp");	jupTexture = loadTexture(jup);		delete jup;
-	Image* sat = loadBMP("textures/saturn.bmp");		satTexture = loadTexture(sat);		delete sat;
-	Image* ura = loadBMP("textures/uranus.bmp");		uraTexture = loadTexture(ura);		delete ura;
-	Image* nep = loadBMP("textures/neptune.bmp");	nepTexture = loadTexture(nep);		delete nep;
-	Image* plu = loadBMP("textures/pluto.bmp");		pluTexture = loadTexture(plu);		delete plu;
+	Image* sta = loadTexture("textures/stars.bmp");		staTexture = createTexture(sta);		delete sta;
+	Image* sun = loadTexture("textures/sun.bmp");		sunTexture = createTexture(sun);		delete sun;
+	Image* mer = loadTexture("textures/mercury.bmp");	merTexture = createTexture(mer);		delete mer;
+	Image* ven = loadTexture("textures/venus.bmp");		venTexture = createTexture(ven);		delete ven;
+	Image* ear = loadTexture("textures/earth.bmp");		earTexture = createTexture(ear);		delete ear;
+	Image* mar = loadTexture("textures/mars.bmp");		marTexture = createTexture(mar);		delete mar;
+	Image* jup = loadTexture("textures/jupiter.bmp");	jupTexture = createTexture(jup);		delete jup;
+	Image* sat = loadTexture("textures/saturn.bmp");		satTexture = createTexture(sat);		delete sat;
+	Image* ura = loadTexture("textures/uranus.bmp");		uraTexture = createTexture(ura);		delete ura;
+	Image* nep = loadTexture("textures/neptune.bmp");	nepTexture = createTexture(nep);		delete nep;
+	Image* plu = loadTexture("textures/pluto.bmp");		pluTexture = createTexture(plu);		delete plu;
 
 	//LIGHTING SETUP
 	glEnable(GL_LIGHTING);
