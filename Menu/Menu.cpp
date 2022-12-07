@@ -1,8 +1,7 @@
 #include "menu.hpp"
 
-extern int bigOrbitActive;
-extern int changeCamera;
-extern int isAnimate;
+extern int rotationLines;
+extern int camAngle;
 
 void menu() {
 	glutCreateMenu(mainMenu);
@@ -10,33 +9,24 @@ void menu() {
 	glutAddMenuEntry("Hide Orbit Rings", 2);
 	glutAddMenuEntry("View 1", 3);
 	glutAddMenuEntry("View 2", 4);
-	glutAddMenuEntry("Play Animation", 5);
-	glutAddMenuEntry("Stop Animation", 6);
-	glutAddMenuEntry("Quit", 7);
+	glutAddMenuEntry("Quit", 5);
 }
 
 void mainMenu(GLint option){
 	switch (option){
 	case 1:
-		bigOrbitActive = 1;
+		rotationLines = 1;
 		break;
 	case 2:
-		bigOrbitActive = 0;
+		rotationLines = 0;
 		break;
 	case 3:
-		changeCamera = 0;
+		camAngle = 0;
 		break;
 	case 4:
-		changeCamera = 1;
+		camAngle = 1;
 		break;
 	case 5:
-		isAnimate = 0;
-		break;
-	case 6:
-		isAnimate = 1;
-		animate(1);
-		break;
-	case 7:
 		exit(0);
 	}
 

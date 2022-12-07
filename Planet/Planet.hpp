@@ -10,9 +10,9 @@ using namespace std;
 
 class Planet{
 public:
-	float radius, distance, orbit, orbitSpeed, axisTilt, axisAni;
+	float radius, distance, orbit, speed, tilt, axis;
 public:
-	Planet(float _radius, float _distance, float _orbit, float _orbitSpeed, float _axisTilt, float _axisAni);
+	Planet(float _radius, float _distance, float _orbit, float _speed, float _tilt, float _axis);
 };
 
 #endif
